@@ -6,10 +6,16 @@ var answer1 = document.getElementById("answer-1")
 var answer2 = document.getElementById("answer-2")
 var answer3 = document.getElementById("answer-3")
 var answer4 = document.getElementById("answer-4")
+var scoreEl = document.getElementById("score")
+var resultEl = document.getElementById("result")
 
 quizContent.style.display = "none"
 
 var qno = 0;
+var score = 0;
+var timerObj;
+var timerCount =100;
+var timerEl = document.getElementById("timer")
 var questionsList = [
     {
         question: "HTML is",
@@ -20,7 +26,7 @@ var questionsList = [
         answer:"answer-4"
     },
     {
-        question: "HTML latest is",
+        question: "HTML latest version",
         answer1:"Hyper text  4",
         answer2:"1",
         answer3:"100t",
@@ -73,3 +79,33 @@ function displayQuiz(){
 
 
 }
+
+
+
+
+function proceedToNext(){
+   var buttonID = this.getAttribute("id")
+   if(buttonID === questionsList[qno].answer){
+    score +=10
+    resultEl.innerText = "Right!"
+    scoreEl.innerText = score
+   }else{
+    resultEl.innerText = "Wrong!"
+    scoreEl.innerText = score
+   }
+   if(qno < questionsList.length-1){
+    qno++
+    displayQuiz()
+   }else{
+    endQuiz()
+   }
+}
+
+function endQuiz(){
+    quizContent.style.display = "none"  
+}
+
+answer1.addEventListener("click",proceedToNext)
+answer2.addEventListener("click",proceedToNext)
+answer3.addEventListener("click",proceedToNext)
+answer4.addEventListener("click",proceedToNext)
