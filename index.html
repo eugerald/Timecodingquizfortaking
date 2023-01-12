@@ -12,14 +12,19 @@
     <header class="bg-warning text-center text-white">
         <h1>Time Quiz</h1>
     </header>
-    <main class="container">
+    <main class="container text-center">
         <section>
             <p>This is  a timed quiz with negative marking. For each wrong answer you will loose 5 seconds.</p>
-    <button class="btn btn-warning">Start Quiz</button>
+    <button id="startButton" class="btn btn-warning">Start Quiz</button>
         </section>
-        <article>
-            <h2 class="question"></h2>
-            
+        <article id="quiz-content">
+            <h2 id="question"></h2>
+            <section class="d-grid gap-2">
+                <button id="answer-1" class="btn btn-secondary"></button>
+                <button id="answer-2" class="btn btn-secondary"></button>
+                <button id="answer-3" class="btn btn-secondary"></button>
+                <button id="answer-4" class="btn btn-secondary"></button>
+            </section>
         </article>
     </main>
 
