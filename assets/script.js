@@ -1,5 +1,7 @@
 
 var quizContent = document.getElementById("quiz-content")
+var endQuizContent = document.getElementById("end-quiz")
+var scoreContent = document.getElementById("score-content")
 var startButton = document.getElementById("startButton")
 var question = document.getElementById("question")
 var answer1 = document.getElementById("answer-1")
@@ -8,8 +10,28 @@ var answer3 = document.getElementById("answer-3")
 var answer4 = document.getElementById("answer-4")
 var scoreEl = document.getElementById("score")
 var resultEl = document.getElementById("result")
+var subBtn = document.getElementById("submit-btn")
+var initialsInput = document.getElementById("initials")
+let tble = document.getElementById("t-content")
+
+subBtn.addEventListener("click", () => {
+    endQuizContent.style.display = "none"
+    scoreContent.style.display = "block"
+
+    let tr = document.createElement("tr")
+    let td1 = document.createElement("td")
+    let td2 = document.createElement("td")
+    td1.innerText = initialsInput.value
+    td2.innerText = score
+    tr.appendChild(td1)
+    tr.appendChild(td2)
+    tble.appendChild(tr)
+    
+})
 
 quizContent.style.display = "none"
+endQuizContent.style.display = "none"
+scoreContent.style.display = "none"
 
 var qno = 0;
 var score = 0;
@@ -73,6 +95,8 @@ function displayQuiz(){
     answer2.innerText = questionsList[qno].answer2
     answer3.innerText = questionsList[qno].answer3
     answer4.innerText = questionsList[qno].answer4
+    timerEl.innerText = timerCount
+    scoreEl.innerText = score
 
 
 
@@ -92,6 +116,7 @@ function proceedToNext(){
    }else{
     resultEl.innerText = "Wrong!"
     scoreEl.innerText = score
+    timerCount -= 50;
    }
    if(qno < questionsList.length-1){
     qno++
@@ -99,13 +124,36 @@ function proceedToNext(){
    }else{
     endQuiz()
    }
+   if(timerCount < 0){
+    endQuiz()
+   }
 }
 
 function endQuiz(){
-    quizContent.style.display = "none"  
+    quizContent.style.display = "none" 
+    endQuizContent.style.display = "block"
+    var fScore = document.getElementById("final-score")
+    fScore.innerText = score
+
 }
 
 answer1.addEventListener("click",proceedToNext)
 answer2.addEventListener("click",proceedToNext)
 answer3.addEventListener("click",proceedToNext)
 answer4.addEventListener("click",proceedToNext)
+
+
+function handleback() {
+    endQuizContent.style.display = "none"
+    scoreContent.style.display = "none"
+    quizContent.style.display = "block"
+    qno = 0
+    score = 0
+    timerCount = 100
+    displayQuiz()
+    
+}
+
+function handleClear() {
+    tble.innerHTML = ""
+}

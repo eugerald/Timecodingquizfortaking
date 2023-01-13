@@ -11,10 +11,11 @@
 <body>
     <header class="bg-warning text-center text-white">
         <h1>Time Quiz</h1>
+        <a href="">View High scores</a>
     </header>
     <main class="container text-center">
         <section>
-            <p>This is  a timed quiz with negative marking. For each wrong answer you will loose 5 seconds.</p>
+            <p>This is  a timed quiz with negative marking. For each wrong answer you will loose 50 seconds.</p>
     <button id="startButton" class="btn btn-warning">Start Quiz</button>
         </section>
         <article id="quiz-content">
@@ -30,6 +31,30 @@
                 <h4 id="result"></h4>
                 <h4 >Score :  <span id="score"></span></h4>
             </section>
+        </article>
+        <article id="end-quiz">
+            <h1>All Done</h1>
+            <h5>Your final score is : <span id="final-score"></span></h5>
+            <label>Enter initials : <input type="text" id="initials"> <button id="submit-btn">Submit</button> </label>
+        </article>
+        <article id="score-content">
+            <h1>High Score</h1>
+            <table class="table">
+                <thead>
+                  <tr>
+              
+                    <th scope="col">Initials</th>
+                    <th scope="col">Score</th>
+                  </tr>
+                </thead>
+                <tbody id="t-content">
+                  
+                </tbody>
+            </table>
+            <div class="btns">
+                <button onclick="handleback()">Go Back</button>
+                <button onclick="handleClear()">Clear High Scores</button>
+            </div>
         </article>
     </main>
 
